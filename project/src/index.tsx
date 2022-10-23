@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import PlaceCard from './components/place-card/place-card';
+
+const Setting = {
+  PlacesFoundCount:312,
+} as const;
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -9,7 +12,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App />
-    <PlaceCard />
+    <App
+      placesFoundCount = {Setting.PlacesFoundCount}
+    />
   </React.StrictMode>,
 );

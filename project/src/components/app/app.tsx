@@ -1,8 +1,12 @@
-import TabsNav from '../../pages/main-page/main-page';
+import MainPage from '../../pages/main-page/main-page';
 
-function App(): JSX.Element {
+type AppProps = {
+  placesFoundCount: number;
+}
+
+function App({placesFoundCount}: AppProps): JSX.Element {
   return (
-    <TabsNav />
+    <MainPage placesFoundCount={placesFoundCount} />
   );
 }
 
