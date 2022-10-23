@@ -1,5 +1,9 @@
+import TabsNav from '../../pages/main-page/main-page';
+
 function App(): JSX.Element {
-  return <p>Hello, world!</p>;
+  return (
+    <TabsNav />
+  );
 }
 
 export default App;
