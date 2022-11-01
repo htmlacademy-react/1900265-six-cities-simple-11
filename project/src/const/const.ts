@@ -1,8 +1,7 @@
 export enum AppRoute {
   Main = '/',
   Login = '/login',
-  Property = '/offer',
-  PropertyId = '/offer/:id'
+  Room = '/offer/:id',
 }
 
 export enum AuthorizationStatus {

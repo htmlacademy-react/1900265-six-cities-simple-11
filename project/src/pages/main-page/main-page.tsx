@@ -1,11 +1,25 @@
-import PlaceCard from '../../components/place-card/place-card';
+import { Link } from 'react-router-dom';
+import {useState} from 'react';
 import Header from '../../components/header/header';
+import {Offers} from '../../types/offer';
+import OffersList from '../../components/offers-list/offers-list';
 
 type MainPageProps = {
   placesFoundCount: number;
+  offers: Offers;
 }
 
-function MainPage({placesFoundCount}: MainPageProps): JSX.Element {
+function MainPage({placesFoundCount, offers}: MainPageProps): JSX.Element {
+  const [hoverCardId, setHoverCardId] = useState(0);
+
+  const handleCardOver = (id: number) => {
+    setHoverCardId(id);
+  };
+
+  const handleCardOut = () => {
+    setHoverCardId(0);
+  };
+
   return (
     <>
       <header className="header">
@@ -17,34 +31,34 @@ function MainPage({placesFoundCount}: MainPageProps): JSX.Element {
           <section className="locations container">
             <ul className="locations__list tabs__list">
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href={' '}>
+                <Link className="locations__item-link tabs__item" to='/'>
                   <span>Paris</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href={' '}>
+                <Link className="locations__item-link tabs__item" to='/'>
                   <span>Cologne</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href={' '}>
+                <Link className="locations__item-link tabs__item" to='/'>
                   <span>Brussels</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active" href={' '}>
+                <Link className="locations__item-link tabs__item tabs__item--active" to='/'>
                   <span>Amsterdam</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href={' '}>
+                <Link className="locations__item-link tabs__item" to='/'>
                   <span>Hamburg</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href={' '}>
+                <Link className="locations__item-link tabs__item" to='/'>
                   <span>Dusseldorf</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </section>
@@ -69,11 +83,7 @@ function MainPage({placesFoundCount}: MainPageProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {[0,1,2,3,4].map((nam) => (
-                  <PlaceCard key={nam} />
-                ))}
-              </div>
+              <OffersList handleCardOver={(id: number)=>handleCardOver(id)} handleCardOut={handleCardOut} hoverCardId={hoverCardId} offers={offers} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
