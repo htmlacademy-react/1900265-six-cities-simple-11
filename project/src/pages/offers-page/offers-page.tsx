@@ -1,7 +1,22 @@
+import { Link, useParams} from 'react-router-dom';
 import Header from '../../components/header/header';
 import ReviewForm from '../../components/review-form/review-form';
+import {Offers} from '../../types/offer';
 
-function OffersPage(): JSX.Element {
+type OffersPageProps = {
+  offers: Offers;
+}
+
+const PERCENT_MULTIPLIER = 20;
+
+function OffersPage({offers}: OffersPageProps): JSX.Element {
+
+  const params = useParams();
+  const offerId:number = parseInt(params.id || '', 10);
+  const offer = offers.find((item) => item.id === offerId) || offers[0];
+
+  const ratingPercent = `${String((Math.round(offer.ratingStars)) * PERCENT_MULTIPLIER)}%`;
+
   return (
     <>
       <header className="header">
@@ -33,24 +48,27 @@ function OffersPage(): JSX.Element {
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              <div className="place-card__mark">
-                <span>Premium</span>
-              </div>
+              {
+                offer.premium &&
+                  <div className="place-card__mark">
+                    <span>Premium</span>
+                  </div>
+              }
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  Beautiful &amp; luxurious studio at great location
+                  {offer.propertyName}
                 </h1>
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: '80%'}}></span>
+                  <span style={{width: ratingPercent}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">4.8</span>
+                <span className="property__rating-value rating__value">{offer.ratingStars}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  Apartment
+                  {offer.propertyType}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
                   3 Bedrooms
@@ -60,7 +78,7 @@ function OffersPage(): JSX.Element {
                 </li>
               </ul>
               <div className="property__price">
-                <b className="property__price-value">&euro;{120}</b>
+                <b className="property__price-value">&euro;{offer.cost}</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
               <div className="property__inside">
@@ -176,7 +194,8 @@ function OffersPage(): JSX.Element {
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="/">Wood and stone place</a>
+                    {/* <a href="/">Wood and stone place</a> */}
+                    <Link to="/offer/:id">Wood and stone place</Link>
                   </h2>
                   <p className="place-card__type">Private room</p>
                 </div>

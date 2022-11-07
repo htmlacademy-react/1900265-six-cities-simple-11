@@ -17,7 +17,7 @@ function App({placesFoundCount, offers}: AppProps): JSX.Element {
       <Routes>
         <Route path={AppRoute.Main} element={<MainPage placesFoundCount={placesFoundCount} offers={offers} />} />
         <Route path={AppRoute.Login} element={<LoginPage />} />
-        <Route path={AppRoute.Room} element={<OffersPage />} />
+        <Route path={AppRoute.Room} element={<OffersPage offers={offers} />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
