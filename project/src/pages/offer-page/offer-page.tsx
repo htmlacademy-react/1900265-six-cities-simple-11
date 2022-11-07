@@ -1,15 +1,15 @@
-import { Link, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import Header from '../../components/header/header';
 import ReviewForm from '../../components/review-form/review-form';
 import {Offers} from '../../types/offer';
 
-type OffersPageProps = {
+type OfferPageProps = {
   offers: Offers;
 }
 
 const PERCENT_MULTIPLIER = 20;
 
-function OffersPage({offers}: OffersPageProps): JSX.Element {
+function OfferPage({offers}: OfferPageProps): JSX.Element {
 
   const params = useParams();
   const offerId:number = parseInt(params.id || '', 10);
@@ -194,8 +194,7 @@ function OffersPage({offers}: OffersPageProps): JSX.Element {
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    {/* <a href="/">Wood and stone place</a> */}
-                    <Link to="/offer/:id">Wood and stone place</Link>
+                    <a href="/">Wood and stone place</a>
                   </h2>
                   <p className="place-card__type">Private room</p>
                 </div>
@@ -263,4 +262,4 @@ function OffersPage({offers}: OffersPageProps): JSX.Element {
   );
 }
 
-export default OffersPage;
+export default OfferPage;

@@ -7,7 +7,7 @@ export const offers: Offers = [
     image: {
       src: 'img/apartment-01.jpg'
     },
-    propertyName: 'Beautiful &amp; luxurious studio at great location',
+    propertyName: 'Beautiful & luxurious studio at great location',
     ratingStars: 4.8,
     propertyType: 'Apartment',
     cost: 120,
