@@ -20,6 +20,12 @@ function MainPage({placesFoundCount, offers}: MainPageProps): JSX.Element {
 
   const currentCity: City | undefined = cities.find((cityData) => cityData.id === CURRENT_CITY_ID);
 
+  if (currentCity === undefined) {
+    return (
+      <></>
+    );
+  }
+
   const handleCardOver = (id: number) => {
     setHoverCardId(id);
   };
