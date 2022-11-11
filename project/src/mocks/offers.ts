@@ -1,6 +1,6 @@
-import { Offers } from '../types/offer';
+import { Offers as OffersType } from '../types/offer';
 
-export const offers: Offers = [
+export const offers: OffersType = [
   {
     id: 1,
     premium: true,
@@ -11,6 +11,10 @@ export const offers: Offers = [
     ratingStars: 4.8,
     propertyType: 'Apartment',
     cost: 120,
+    points: {
+      lat: 52.3909553943508,
+      lng: 4.85309666406198,
+    },
   },
   {
     id: 2,
@@ -22,6 +26,10 @@ export const offers: Offers = [
     ratingStars: 4,
     propertyType: 'Private room',
     cost: 80,
+    points: {
+      lat: 52.3609553943508,
+      lng: 4.85309666406198,
+    },
   },
   {
     id: 3,
@@ -33,6 +41,10 @@ export const offers: Offers = [
     ratingStars: 4,
     propertyType: 'Apartment',
     cost: 132,
+    points: {
+      lat: 52.3909553943508,
+      lng: 4.929309666406198,
+    },
   },
   {
     id: 4,
@@ -44,16 +56,9 @@ export const offers: Offers = [
     ratingStars: 5,
     propertyType: 'Apartment',
     cost: 180,
-  },
-  {
-    id: 5,
-    premium: false,
-    image: {
-      src: 'img/room.jpg'
+    points: {
+      lat: 52.3809553943508,
+      lng: 4.939309666406198,
     },
-    propertyName: 'Wood and stone place',
-    ratingStars: 4,
-    propertyType: 'Private room',
-    cost: 80,
   },
 ];

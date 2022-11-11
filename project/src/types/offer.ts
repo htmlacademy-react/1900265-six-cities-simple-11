@@ -1,3 +1,8 @@
+export interface PointsOfMap {
+  lat: number;
+  lng: number;
+}
+
 export interface PlaceImage {
   src: string;
 }
@@ -10,6 +15,7 @@ export interface Offer {
   ratingStars: number;
   propertyType: string;
   cost: number;
+  points: PointsOfMap;
 }
 
 export type Offers = Offer[];

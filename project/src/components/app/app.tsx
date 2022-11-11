@@ -4,11 +4,11 @@ import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login/login-page';
 import OffersPage from '../../pages/offer-page/offer-page';
 import NotFound from '../not-found404/not-found404';
-import {Offers} from '../../types/offer';
+import {Offers as OffersType} from '../../types/offer';
 
 type AppProps = {
   placesFoundCount: number;
-  offers: Offers;
+  offers: OffersType;
 }
 
 function App({placesFoundCount, offers}: AppProps): JSX.Element {
