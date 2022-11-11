@@ -1,16 +1,31 @@
 import { Link } from 'react-router-dom';
 import {useState} from 'react';
 import Header from '../../components/header/header';
-import {Offers} from '../../types/offer';
 import OffersList from '../../components/offers-list/offers-list';
+import {offers as offersMock} from '../../mocks/offers';
+import {Offers as OffersType} from '../../types/offer';
+import {cities} from '../../mocks/cities';
+import {City} from '../../types/city';
+import Map from '../../components/map/map';
+import NotFound from '../../components/not-found404/not-found404';
 
 type MainPageProps = {
   placesFoundCount: number;
-  offers: Offers;
+  offers: OffersType;
 }
+
+const CURRENT_CITY_ID = 4;
 
 function MainPage({placesFoundCount, offers}: MainPageProps): JSX.Element {
   const [hoverCardId, setHoverCardId] = useState(0);
+
+  const currentCity: City | undefined = cities.find((cityData) => cityData.id === CURRENT_CITY_ID);
+
+  if (currentCity === undefined) {
+    return (
+      <NotFound />
+    );
+  }
 
   const handleCardOver = (id: number) => {
     setHoverCardId(id);
@@ -83,10 +98,10 @@ function MainPage({placesFoundCount, offers}: MainPageProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <OffersList handleCardOver={(id: number)=>handleCardOver(id)} handleCardOut={handleCardOut} hoverCardId={hoverCardId} offers={offers} />
+              <OffersList handleCardOver={(id: number)=>handleCardOver(id)} handleCardOut={handleCardOut} hoverCardId={hoverCardId} offers={offersMock} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map city={currentCity} offers={offersMock} hoverCardId={hoverCardId}/>
             </div>
           </div>
         </div>

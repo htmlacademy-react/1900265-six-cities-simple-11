@@ -1,10 +1,10 @@
 import {useParams} from 'react-router-dom';
 import Header from '../../components/header/header';
 import ReviewForm from '../../components/review-form/review-form';
-import {Offers} from '../../types/offer';
+import {Offers as OfferType} from '../../types/offer';
 
 type OfferPageProps = {
-  offers: Offers;
+  offers: OfferType;
 }
 
 const PERCENT_MULTIPLIER = 20;
