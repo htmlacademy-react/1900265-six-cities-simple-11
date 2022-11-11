@@ -7,6 +7,7 @@ import {Offers as OffersType} from '../../types/offer';
 import {cities} from '../../mocks/cities';
 import {City} from '../../types/city';
 import Map from '../../components/map/map';
+import NotFound from '../../components/not-found404/not-found404';
 
 type MainPageProps = {
   placesFoundCount: number;
@@ -22,7 +23,7 @@ function MainPage({placesFoundCount, offers}: MainPageProps): JSX.Element {
 
   if (currentCity === undefined) {
     return (
-      <></>
+      <NotFound />
     );
   }
 
