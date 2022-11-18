@@ -1,20 +1,31 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { resetMainPage, completeOffersList } from '../store/action';
-import { cities } from '../mocks/cities';
+import { changeCity, completeOffers, hoverCard } from '../store/action';
 import { offers } from '../mocks/offers';
+import { State as StateType} from '../types/state';
+import { CITY_ID_DEFAULT } from '../const/const';
 
-const initialState = {
-  defaultCity: cities[0],
-  offersListAmsterdam: offers,
+const initialState: StateType = {
+  itemsOffers: [],
+  completed: false,
+  cityId: CITY_ID_DEFAULT,
+  hoverCardId: 0,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(resetMainPage, (state) => {
-      state.defaultCity = cities[0];
+    .addCase(changeCity, (state, action) => {
+      const {cityId} = action.payload;
+      state.cityId = cityId;
+      state.itemsOffers = offers.filter((offer) => offer.cityId === state.cityId);
     })
-    .addCase(completeOffersList, (state) => {
-      state.offersListAmsterdam = offers;
+    .addCase(completeOffers, (state) => {
+      if(!state.completed) {
+        state.itemsOffers = offers.filter((offer) => offer.cityId === state.cityId);
+      }
+    })
+    .addCase(hoverCard, (state, action) => {
+      const {id} = action.payload;
+      state.hoverCardId = id;
     });
 });
 

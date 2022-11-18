@@ -1,5 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 
-export const resetMainPage = createAction('/offer/resetMainPage');
+export const changeCity = createAction<{cityId: number}>('offer/changeCity');
 
-export const completeOffersList = createAction('/offer/completeOffersList');
+export const completeOffers = createAction('offer/completeOffers');
+
+export const hoverCard = createAction<{id: number}>('offer/hoverCard');

@@ -1,19 +1,24 @@
-import {useParams} from 'react-router-dom';
+import {Navigate, useParams} from 'react-router-dom';
+import { AppRoute } from '../../const/const';
 import Header from '../../components/header/header';
 import ReviewForm from '../../components/review-form/review-form';
-import {Offers as OfferType} from '../../types/offer';
+import {Offer as OfferType} from '../../types/offer';
+import { offers } from '../../mocks/offers';
+import {PERCENT_MULTIPLIER} from '../../const/const';
 
-type OfferPageProps = {
-  offers: OfferType;
-}
-
-const PERCENT_MULTIPLIER = 20;
-
-function OfferPage({offers}: OfferPageProps): JSX.Element {
-
+function OfferPage(): JSX.Element {
   const params = useParams();
-  const offerId:number = parseInt(params.id || '', 10);
-  const offer = offers.find((item) => item.id === offerId) || offers[0];
+
+  if(!params.id) {
+    return <Navigate to={AppRoute.Main} />;
+  }
+
+  const id = Number(params.id);
+  const offer: OfferType | undefined = offers.find((offerData) => offerData.id === id);
+
+  if(!offer) {
+    return <Navigate to="/NotFound" />;
+  }
 
   const ratingPercent = `${String((Math.round(offer.ratingStars)) * PERCENT_MULTIPLIER)}%`;
 
