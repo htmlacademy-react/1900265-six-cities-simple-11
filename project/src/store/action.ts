@@ -1,6 +1,10 @@
 import { createAction } from '@reduxjs/toolkit';
 
-export const changeCity = createAction<{cityId: number}>('offer/changeCity');
+export const changeCity = createAction('offer/changeCity', (cityId: number) => ({
+  payload: {
+    cityId,
+  },
+}));
 
 export const completeOffers = createAction('offer/completeOffers');
 
