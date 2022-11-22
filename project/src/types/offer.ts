@@ -3,14 +3,11 @@ export interface PointsOfMap {
   lng: number;
 }
 
-export interface PlaceImage {
-  src: string;
-}
-
 export interface Offer {
   id: number;
+  cityId: number;
   premium: boolean;
-  image: PlaceImage;
+  image: string;
   propertyName: string;
   ratingStars: number;
   propertyType: string;
